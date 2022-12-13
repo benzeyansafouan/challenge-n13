@@ -21,7 +21,8 @@ public class UserInfo {
     private String profession;
     private Date birthDate;
     private CardType cardType;
-    private String imageFileObjectId;
+    private String imageFileId;
+    private String qrCodeImageId;
 
     public UserInfo() {
     }
@@ -98,11 +99,19 @@ public class UserInfo {
         this.cardType = cardType;
     }
 
-    public String getImageFileObjectId() {
-        return imageFileObjectId;
+    public String getImageFileId() {
+        return imageFileId;
     }
 
-    public void setImageFileObjectId(String imageFileObjectId) {
-        this.imageFileObjectId = imageFileObjectId;
+    public void setImageFileId(String imageFileId) {
+        this.imageFileId = imageFileId;
+    }
+
+    public String getQrCodeImageId() {
+        return qrCodeImageId;
+    }
+
+    public void setQrCodeImageId(String qrCodeImageId) {
+        this.qrCodeImageId = qrCodeImageId;
     }
 }

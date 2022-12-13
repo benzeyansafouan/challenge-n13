@@ -14,6 +14,7 @@ public class UserInfoDto {
     private Date birthDate;
     private CardType cardType;
     private byte[] userImage;
+    private byte[] userQrCodeImage;
 
     public String getId() {
         return id;
@@ -93,5 +94,13 @@ public class UserInfoDto {
 
     public void setUserImage(byte[] userImage) {
         this.userImage = userImage;
+    }
+
+    public byte[] getUserQrCodeImage() {
+        return userQrCodeImage;
+    }
+
+    public void setUserQrCodeImage(byte[] userQrCodeImage) {
+        this.userQrCodeImage = userQrCodeImage;
     }
 }

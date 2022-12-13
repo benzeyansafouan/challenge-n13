@@ -5,15 +5,11 @@ import com.example.challengen13.model.UserInfoDto;
 import com.example.challengen13.service.ChallengeN13ServiceImpl;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
-import org.modelmapper.AbstractCondition;
-import org.modelmapper.Condition;
-import org.modelmapper.Conditions;
+import java.util.List;
 import org.modelmapper.ModelMapper;
-import org.modelmapper.spi.MappingContext;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -22,9 +18,10 @@ import org.springframework.web.multipart.MultipartFile;
 
 
 @RestController
-@EnableAutoConfiguration
 @RequestMapping("user")
 public class ChallengeN13Controller {
+
+
     private final ChallengeN13ServiceImpl challengeN13Service;
     private final ModelMapper modelMapper;
     private final ObjectMapper objectMapper;
@@ -35,8 +32,15 @@ public class ChallengeN13Controller {
         this.modelMapper = modelMapper;
         this.objectMapper = objectMapper;
     }
-
-
+    @GetMapping("/get-users")
+    ResponseEntity<List<UserInfoDto>> getUsers() {
+        try {
+            var users = challengeN13Service.getAllUsers();
+            return ResponseEntity.ok(users);
+        }catch (Exception e){
+            return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).build();
+        }
+    }
 
     @PostMapping("/save")
     ResponseEntity<UserInfoDto> save(@RequestParam String userInfo,
@@ -56,8 +60,8 @@ public class ChallengeN13Controller {
 
 
     private void retrieveImage(UserInfo userInfo, UserInfoDto userInfoDto) {
-        if (userInfo.getImageFileObjectId() != null) {
-            var resource = challengeN13Service.getUserImageById(userInfo.getImageFileObjectId());
+        if (userInfo.getImageFileId() != null) {
+            var resource = challengeN13Service.getUserImageById(userInfo.getImageFileId());
             try {
                 userInfoDto.setUserImage(resource.getInputStream().readAllBytes());
             } catch (IOException e) {

@@ -1,0 +1,69 @@
+<div class="mat-elevation-z4">
+  <div *ngIf="$isLoading" class="centered top-padding">
+    <mat-spinner class="centered"></mat-spinner>
+  </div>
+  <table *ngIf="!$isLoading" [dataSource]="dataSource" mat-table matSort>
+    <ng-container matColumnDef="imageFileObjectId">
+      <th *matHeaderCellDef mat-header-cell mat-sort-header> {{"image" | translate}}</th>
+      <td *matCellDef="let category" mat-cell>
+        <img
+          [src]="category.categoryImage
+          ? 'data:image/jpeg;base64,'+category.categoryImage
+          : 'assets/img/img-placeholder.jpg'"
+          alt=""
+          class="table-img">
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="name">
+      <th *matHeaderCellDef mat-header-cell mat-sort-header> {{'Name' | translate}}</th>
+      <td *matCellDef="let category" mat-cell> {{category.name}} </td>
+    </ng-container>
+    <ng-container matColumnDef="description">
+      <th *matHeaderCellDef mat-header-cell mat-sort-header> {{'Description' | translate}}</th>
+      <td *matCellDef="let category" mat-cell> {{category.description}} </td>
+    </ng-container>
+    <ng-container matColumnDef="categoryParent">
+      <th *matHeaderCellDef mat-header-cell mat-sort-header> {{'Category_parent'| translate}}</th>
+      <td *matCellDef="let category" mat-cell> {{getCategoryNamesById(category)}} </td>
+    </ng-container>
+    <ng-container matColumnDef="createdDate">
+      <th *matHeaderCellDef mat-header-cell mat-sort-header> {{'Date.Created' | translate}}</th>
+      <td *matCellDef="let category" mat-cell> {{category.createdDate| date: 'short'}} </td>
+    </ng-container>
+    <ng-container matColumnDef="createdBy">
+      <th *matHeaderCellDef mat-header-cell mat-sort-header> {{'Created_By' | translate}}</th>
+      <td *matCellDef="let category" mat-cell> {{category.createdBy}} </td>
+    </ng-container>
+    <ng-container matColumnDef="assignedLocation">
+      <th *matHeaderCellDef mat-header-cell mat-sort-header> {{'assigned_location' | translate}}</th>
+      <td *matCellDef="let category" mat-cell> {{getLocationNameById(category)}} </td>
+    </ng-container>
+    <ng-container matColumnDef="actions">
+      <th *matHeaderCellDef mat-header-cell mat-sort-header></th>
+      <td *matCellDef="let category" mat-cell>
+        <button [matMenuTriggerData]="{category}" [matMenuTriggerFor]="menu" mat-icon-button>
+          <mat-icon>more_vert</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+    <tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
+    <tr *matRowDef="let row; columns: displayedColumns;" mat-row></tr>
+  </table>
+
+  <mat-paginator (page)="changePage($event)" [length]="$totalElements" [pageSizeOptions]="[10, 25, 50, 100]"
+                 showFirstLastButtons>
+  </mat-paginator>
+</div>
+
+<mat-menu #menu="matMenu">
+  <ng-template let-category="category" matMenuContent>
+    <button (click)="onEdit(category)" mat-menu-item>
+      <mat-icon fontSet="material-icons-outlined"> edit</mat-icon>
+      {{'Edit.One' | translate}}
+    </button>
+    <button (click)="onDelete(category)" mat-menu-item>
+      <mat-icon>delete_outline</mat-icon>
+      {{'Delete.One' | translate}}
+    </button>
+  </ng-template>
+</mat-menu>

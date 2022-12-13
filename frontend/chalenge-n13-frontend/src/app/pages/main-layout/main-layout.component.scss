@@ -1,0 +1,10 @@
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+
+mat-toolbar {
+  height: 7vh;
+}
+main {
+  height: 93%;
+  overflow: hidden;
+  position: relative;
+}
