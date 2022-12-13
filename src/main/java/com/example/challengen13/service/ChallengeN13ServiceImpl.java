@@ -39,5 +39,5 @@ public class ChallengeN13ServiceImpl implements ChallengeN13Service{
     public Resource getUserImageById(String imageId) {
         return userGridFsService.getFile(imageId);
     }
-    
+
 }
