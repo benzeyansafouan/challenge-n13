@@ -1,0 +1,11 @@
+version: "3.8"
+
+networks:
+  n13_network:
+    driver: bridge
+    ipam:
+      driver: default
+
+volumes:
+  mongodb_data:
+    driver: local
