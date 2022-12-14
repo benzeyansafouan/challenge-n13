@@ -44,20 +44,12 @@ public class ChallengeN13Controller {
     }
     @GetMapping("/get-users")
     ResponseEntity<List<UserInfoDto>> getUsers() {
-        try {
+    try{
             var users = challengeN13Service.getAllUsers();
             return ResponseEntity.ok(users);
         }catch (Exception e){
             return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).build();
         }
-    }
-    CorsConfigurationSource corsConfigurationSource() {
-        CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(Arrays.asList("http://localhost:4200"));
-        configuration.setAllowedMethods(Arrays.asList("GET","POST"));
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", configuration);
-        return source;
     }
 
     @PostMapping("/save")
@@ -75,7 +67,6 @@ public class ChallengeN13Controller {
         }
     }
 
-    @GetMapping("/export-to-pdf")
     public void generatePdfFile(HttpServletResponse response,UserInfoDto userInfoDto)
         throws Exception {
         response.setContentType("application/pdf");
