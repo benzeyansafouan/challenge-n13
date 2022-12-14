@@ -1,0 +1,66 @@
+<div class="mat-elevation-z4">
+  <div *ngIf="$isLoading" class="centered top-padding">
+    <mat-spinner class="centered"></mat-spinner>
+  </div>
+  <table *ngIf="!$isLoading" [dataSource]="dataSource" mat-table matSort>
+    <ng-container matColumnDef="imageFileId">
+      <th *matHeaderCellDef mat-header-cell mat-sort-header> {{"image"}}</th>
+      <td *matCellDef="let user" mat-cell>
+        <img
+          [src]="user.userImage
+          ? 'data:image/jpeg;base64,'+user.userImage
+          : 'assets/img/img-placeholder.jpg'"
+          alt=""
+          class="table-img">
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="firstName">
+      <th *matHeaderCellDef mat-header-cell mat-sort-header> First Name</th>
+      <td *matCellDef="let user" mat-cell> {{user.firstName}} </td>
+    </ng-container>
+    <ng-container matColumnDef="lastName">
+      <th *matHeaderCellDef mat-header-cell mat-sort-header> Last Name</th>
+      <td *matCellDef="let user" mat-cell> {{user.lastName}} </td>
+    </ng-container>
+    <ng-container matColumnDef="cin">
+      <th *matHeaderCellDef mat-header-cell mat-sort-header> CIN</th>
+      <td *matCellDef="let user" mat-cell> {{user.cin}}</td>
+    </ng-container>
+    <ng-container matColumnDef="profession">
+      <th *matHeaderCellDef mat-header-cell mat-sort-header> Profession</th>
+      <td *matCellDef="let user" mat-cell> {{user.profession}} </td>
+    </ng-container>
+    <ng-container matColumnDef="birthDate">
+      <th *matHeaderCellDef mat-header-cell mat-sort-header> Birth Date</th>
+      <td *matCellDef="let user" mat-cell> {{user.birthDate| date: 'short'}} </td>
+    </ng-container>
+    <ng-container matColumnDef="cardType">
+      <th *matHeaderCellDef mat-header-cell mat-sort-header> Card Type</th>
+      <td *matCellDef="let user" mat-cell> {{user.cardType}} </td>
+    </ng-container>
+    <ng-container matColumnDef="actions">
+      <th *matHeaderCellDef mat-header-cell mat-sort-header></th>
+      <td *matCellDef="let user" mat-cell>
+        <button [matMenuTriggerData]="{user}" [matMenuTriggerFor]="menu" mat-icon-button>
+          <mat-icon>more_vert</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+    <tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
+    <tr *matRowDef="let row; columns: displayedColumns;" mat-row></tr>
+  </table>
+
+</div>
+
+<mat-menu #menu="matMenu">
+  <ng-template let-user="user" matMenuContent>
+    <button (click)="onEdit(user)" mat-menu-item>
+      <mat-icon fontSet="material-icons-outlined"> edit</mat-icon>
+      {{'Edit.One'}}
+    </button>
+    <button (click)="onDelete(user)" mat-menu-item>
+      <mat-icon>delete_outline</mat-icon>
+      {{'Delete.One'}}
+    </button>
+  </ng-template>
+</mat-menu>

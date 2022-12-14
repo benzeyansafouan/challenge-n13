@@ -1,5 +1,23 @@
 version: "3.8"
 
+services:
+  challenge-13-mongodb:
+    hostname: challenge-13-mongodb
+    restart: always
+    container_name: challenge-13-mongodb
+    build:
+      context: docker/challenge-13-mongo
+      dockerfile: Dockerfile
+    env_file:
+      - docker/env-files/mongo.env
+    volumes:
+      - mongodb_data:/data/db
+    command: mongod --auth
+    networks:
+      - inoqta_network
+    ports:
+      - "27017:27017"
+
 networks:
   n13_network:
     driver: bridge

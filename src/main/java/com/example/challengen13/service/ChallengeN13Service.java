@@ -11,4 +11,5 @@ import org.springframework.web.multipart.MultipartFile;
 public interface ChallengeN13Service {
     UserInfo saveInfos(UserInfo userInfo, MultipartFile multipartFile) throws IOException;
     List<UserInfoDto> getAllUsers() throws Exception;
+
 }

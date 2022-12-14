@@ -40,8 +40,9 @@ public class ChallengeN13ServiceImpl implements ChallengeN13Service{
             userInfo.setId(new ObjectId().toString());
             challengeN13Repository.save(userInfo);
         }
-        return null;
+        return userInfo;
     }
+
 
     @Override
     public List<UserInfoDto> getAllUsers() throws Exception {

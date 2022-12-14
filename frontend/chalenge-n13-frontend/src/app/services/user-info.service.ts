@@ -13,8 +13,16 @@ export class UserInfoService extends ApiAbstractService{
     super(httpClient);
   }
 
-  public saveUserInfo(userInfo:UserInfo):Observable<UserInfo>{
-    return this.httpClient.post<UserInfo>(this.generateUrl(['user','save']),userInfo);
+  public saveUserInfo(userInfo:UserInfo,userImage: File | undefined):Observable<any>{
+    let formData = new FormData();
+    formData.append('userInfo', JSON.stringify(userInfo));
+    if (userImage) {
+      formData.append('userImage', userImage);
+    }
+    return this.httpClient.post(this.generateUrl(['user','save']),formData,{
+      observe: 'response',
+      responseType: 'arraybuffer'
+    });
   }
 
   public getUsers():Observable<UserInfo[]>{

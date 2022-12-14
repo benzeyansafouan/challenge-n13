@@ -1,0 +1,57 @@
+<h3 class="mat-dialog-title" mat-dialog-title>Card Informations</h3>
+<div mat-dialog-content>
+
+      <div>
+        <p>Create New Identical Card</p>
+        <mat-form-field appearance="fill" class="form-input">
+          <mat-label>First Name</mat-label>
+          <input [(ngModel)]="user.firstName" matInput required>
+        </mat-form-field>
+        <mat-form-field appearance="fill" class="form-input">
+          <mat-label>Last Name</mat-label>
+          <input [(ngModel)]="user.lastName" matInput required>
+        </mat-form-field>
+        <mat-form-field appearance="fill" class="form-input">
+          <mat-label>CIN</mat-label>
+          <input [(ngModel)]="user.cin" matInput required>
+        </mat-form-field>
+        <mat-form-field appearance="fill" class="form-input">
+          <mat-label>Profession</mat-label>
+          <input [(ngModel)]="user.profession" matInput required>
+        </mat-form-field>
+        <div class="inline">
+          <mat-form-field appearance="fill" class="form-input date birthday-input">
+            <mat-label>Birthday</mat-label>
+            <input [matDatepicker]="birthdayPicker" matInput>
+            <mat-datepicker-toggle [for]="birthdayPicker" matSuffix></mat-datepicker-toggle>
+            <mat-datepicker #birthdayPicker></mat-datepicker>
+          </mat-form-field>
+        </div>
+        <mat-form-field class="form-input">
+          <div class="uploader">
+            <mat-toolbar>
+              <p> Select File</p>
+              <input class="form-input" matInput name="userImage" readonly/>
+              <button color="primary" mat-flat-button>
+               Browse
+              </button>
+            </mat-toolbar>
+            <!-- Fetch selected filed on change -->
+            <input #UploadFileInput (change)="fileChangeEvent($event)" accept="image/*" id="fileUpload"
+                   multiple="multiple"
+                   name="fileUpload" type="file"/>
+          </div>
+          <div>
+            <img [src]="filePreview ? filePreview : 'assets/img/img-placeholder.jpg'" alt="" class="img-preview">
+          </div>
+        </mat-form-field>
+      </div>
+
+</div>
+<div class="right" mat-dialog-actions>
+  <button (click)="onClose()" mat-button>Cancel</button>
+  <button (click)="onSave()" [class.spinner]="isLoading" [disabled]="isLoading" color="primary"
+          mat-raised-button>
+    Save
+  </button>
+</div>

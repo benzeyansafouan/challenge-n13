@@ -7,6 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MainLayoutComponent } from './pages/main-layout/main-layout.component';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MainLayoutModule} from 'src/app/pages/main-layout/main-layout.module';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import {MainLayoutModule} from 'src/app/pages/main-layout/main-layout.module';
     AppRoutingModule,
     BrowserAnimationsModule,
     MatToolbarModule,
-    MainLayoutModule
+    MainLayoutModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

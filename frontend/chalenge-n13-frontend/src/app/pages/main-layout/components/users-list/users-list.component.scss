@@ -1,0 +1,39 @@
+table {
+  width: 100%;
+}
+
+.top-padding {
+  padding-top: 2vh !important;
+}
+
+.centered {
+  width: 50%;
+  margin: 0 auto;
+}
+
+.table-img {
+  max-width: 50px;
+}
+
+.member-details {
+  overflow: hidden;
+  display: flex;
+
+  .member-information {
+    width: 100%;
+    margin: 8px 20px;
+
+    .member-details-item {
+      display: flex;
+      margin-top: 5px;
+    }
+
+    .member-details-label {
+      font-weight: 500;
+    }
+
+    .member-details-value {
+      margin-left: 10px;
+    }
+  }
+}

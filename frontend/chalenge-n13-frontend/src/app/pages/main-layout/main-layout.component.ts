@@ -8,7 +8,7 @@ import {UserInfoService} from 'src/app/services/user-info.service';
 })
 export class MainLayoutComponent {
 
-  constructor(private userInfoService:UserInfoService) {
+  constructor() {
   }
 
 }

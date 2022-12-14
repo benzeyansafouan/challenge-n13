@@ -1,0 +1,38 @@
+.inline {
+  width: 100%;
+  display: inline-flex;
+
+  .form-input:not(:first-child) {
+    margin-left: 20px;
+  }
+}
+.my-mat-hint {
+  top: 0;
+  right: 0;
+  transform: translateY(-30%);
+  float: right;
+  position: absolute;
+}
+.birthday-input {
+  position: relative;
+}
+.date {
+  min-width: 200px;
+}
+.form-input {
+  width: 100%;
+}
+#fileUpload {
+  position: absolute;
+  z-index: 9;
+  opacity: 0;
+  height: 100%;
+  width: 100%;
+  left: 0px;
+  top: 0px;
+  cursor: pointer;
+}
+.img-preview {
+  width: 100px;
+  margin-left: 300px;
+}
